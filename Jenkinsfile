@@ -12,7 +12,6 @@ pipeline {
         //git branch: 'main', url: 'https://github.com/sunitabachhav2007/Jenkins-Zero-To-Hero.git'
       }
     }
-  }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
@@ -20,4 +19,6 @@ pipeline {
         sh 'cd java-maven-sonar-argocd-helm-k8s && mvn clean package'
       }
     }
+  }
+ 
 }

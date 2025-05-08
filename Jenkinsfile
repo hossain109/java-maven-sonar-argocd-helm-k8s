@@ -25,8 +25,7 @@ pipeline {
       }
       steps {
         withCredentials([string(credentialsId: '71d32368-39a5-4c32-ad18-8271fbc08452', variable: 'sonar_token')]) {
-          sh 'mvn sonar:sonar -Dsonar.login=$sonar_token -Dsonar.host.url=${SONAR_URL}'
-          sh ' sleep(time: 5, unit: 'SECONDS')' // Allow time for file write        
+          sh 'mvn sonar:sonar -Dsonar.login=$sonar_token -Dsonar.host.url=${SONAR_URL}' 
         }
       }
   }

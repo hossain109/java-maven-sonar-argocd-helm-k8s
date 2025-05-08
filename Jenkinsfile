@@ -24,8 +24,9 @@ pipeline {
         SONAR_URL = "http://192.168.178.158:9000"
       }
       steps {
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'sonar_token')]) {
+        withCredentials([string(credentialsId: '71d32368-39a5-4c32-ad18-8271fbc08452', variable: 'sonar_token')]) {
           sh 'mvn sonar:sonar -Dsonar.login=$sonar_token -Dsonar.host.url=${SONAR_URL}'
+          sh ' sleep(time: 5, unit: 'SECONDS')' // Allow time for file write        
         }
       }
   }

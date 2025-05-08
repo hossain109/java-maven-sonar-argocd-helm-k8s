@@ -19,6 +19,15 @@ pipeline {
         sh ' mvn clean package'
       }
     }
+        stage('SonarQube Analysis') {
+            steps {
+                script {  // Required for variable declarations and complex logic 
+                    def mvn = tool 'jenkins-maven'  // Get Maven tool
+                    withSonarQubeEnv('sonarqube server') {  // Use SonarQube environment
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java-spring -Dsonar.host.url=http://192.168.178.158:9000 -Dsonar.login=sqp_8d7dbd5f2cad8177f430bcdcf831efae4ad7ce9d"
+                    }
+                }
+            }
   }
  
 }

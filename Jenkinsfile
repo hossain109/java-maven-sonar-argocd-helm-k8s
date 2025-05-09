@@ -28,8 +28,8 @@ pipeline {
 	def mvn = tool 'jenkins-maven'  // Get Maven tool
 	}
       steps {
-        withCredentials([string(credentialsId: '71d32368-39a5-4c32-ad18-8271fbc08452', variable: 'sonar_token')]) {
-          sh '${mvn}/bin/mvn clean verify  sonar:sonar -Dsonar.login=$sonar_token -Dsonar.host.url=${SONAR_URL}' 
+        withCredentials([string(credentialsId: '71d32368-39a5-4c32-ad18-8271fbc08452', variable: 'SONAR_TOKEN')]) {
+          sh '${mvn}/bin/mvn clean verify  sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=${SONAR_URL}' 
         }
       }
   }

@@ -1,10 +1,12 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.8.6-openjdk-11'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
-    }
-  }
+ // agent {
+   // docker {
+     // image 'maven:3.8.6-openjdk-11'
+     // args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    //}
+	
+  //}
+  agent any
   stages {
     stage('Checkout') {
       steps {

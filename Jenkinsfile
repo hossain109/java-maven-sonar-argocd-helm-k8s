@@ -16,7 +16,13 @@ pipeline {
     }
     stage('SonarQube Analysis') {
       steps {
-        mvn clean verify sonar:sonar -Dsonar.projectKey=java-spring -Dsonar.host.url=http://192.168.178.158:9000  -Dsonar.login=sqp_eef703f713b4590b036d0e8022a533305f5498d5 
+      script {  
+	   // Required for variable declarations and complex logic 
+            def mvn = tool 'jenkins-maven'  // Get Maven tool
+            withSonarQubeEnv('sonarqube server') {  
+              // Use SonarQube environment
+        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java-spring -Dsonar.host.url=http://192.168.178.158:9000  -Dsonar.login=sqp_eef703f713b4590b036d0e8022a533305f5498d5" 
+        }
         }
       }
   }
